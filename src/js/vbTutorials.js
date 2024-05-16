@@ -195,15 +195,15 @@ class VBTutorialServeReceive extends VBTutorial {
         tutorial: [
           'Tutorial',
           'Weiter',
-          "Das ist ein Spieler. Klick um zu markieren.\n\nA=Außen, M=Mitte, S=Steller,\nD=Diagonal, L=Libero',
-          "Dies ist das Spielfeld mit allen 6 Spielern.\nWenn Sie auf die Schaltflächen klicken, bewegen sich die Spieler\n auf dem Platz",
+          'Das ist ein Spieler. Klick um zu markieren.\n\nA=Außen, M=Mitte, S=Steller,\nD=Diagonal, L=Libero',
+          'Dies ist das Spielfeld mit allen 6 Spielern.\nWenn Sie auf die Schaltflächen klicken, bewegen sich die Spieler\n auf dem Platz',
           'Hier können Sie die Rotationen auswählen.\nKlicken Sie auf den Kreis, um die Rotation zu ändern.\nJede ist mit der Position des\nSetters beschriftet',
-          "Diese sind für die Zeit, in der du dienst",
-          "Diese sind für den Fall, dass du empfängst",
-          "Wenn man sich von Kreis zu Kreis bewegt, dreht man sich wie in einem Streichholz",
-          "Hier können Sie die Phase des Ballwechsels auswählen.  Die Spieler bewegen sich dann auf dem Platz",
-          "Diese zeigen die Positionen der Spieler\n, wenn Ihre Seite aufschlägt",
-          "Diese zeigen die Spielerpositionen\n an, wenn Ihre Mannschaft annimmt",
+          'Diese sind für die Zeit, in der du dienst',
+          'Diese sind für den Fall, dass du empfängst',
+          'Wenn man sich von Kreis zu Kreis bewegt, dreht man sich wie in einem Streichholz',
+          'Hier können Sie die Phase des Ballwechsels auswählen.  Die Spieler bewegen sich dann auf dem Platz',
+          'Diese zeigen die Positionen der Spieler\n, wenn Ihre Seite aufschlägt',
+          'Diese zeigen die Spielerpositionen\n an, wenn Ihre Mannschaft annimmt',
         ]
       }
     }
