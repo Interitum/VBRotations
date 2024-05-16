@@ -1,7 +1,10 @@
+Copy of VBRotations by monkeysppp
+Builds on original and adds real drills and other rotations
+
 # VBRotations
 
 VBRotations is a toolkit for generating interactive SVGs that can be used to teach Volleyball positional play.  It started as a tutorial for teaching a typical 5-1 rotation system,
-but the API can be used to generate your own tutorials, demonstrations of drills or scenarios. You can see VBRotations in action in [here](https://monkeysppp.github.io/VBRotations)
+but the API can be used to generate your own tutorials, demonstrations of drills or scenarios. You can see VBRotations in action in [here](https://Interitum.github.io/VBRotations)
 
 VBRotations is built using [Snap](http://snapsvg.io).
 
@@ -336,6 +339,7 @@ Thanks to the following for their help with the translations:
 - Kri Muller (Nederlandse)
 - Ainhoa Larumbe (Español)
 - [Vinicius J. F.](https://github.com/vini84200) (Brazilian Portuguese)
+- Frederik Kienz (Deutsch)
 
 ## License
 
