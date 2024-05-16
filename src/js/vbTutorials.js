@@ -42,7 +42,7 @@ class VBTutorial {
   }
 }
 
-class VBTutorialServeReceieve extends VBTutorial {
+class VBTutorialServeReceive extends VBTutorial {
   /*
   * We want to use the same internal units as the court itself, which is 1100 units wide
   * and our tutorial will be 1700x1600 units, so we will have a scaling factor of
