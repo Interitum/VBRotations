@@ -205,7 +205,7 @@ class VBTutorialServeReceieve extends VBTutorial {
           "Diese zeigen die Positionen der Spieler\n, wenn Ihre Seite aufschlägt",
           "Diese zeigen die Spielerpositionen\n an, wenn Ihre Mannschaft annimmt",
         ]
-      },
+      }
     }
 
     this.language = (typeof config.language === 'string' && Object.keys(this.text).includes(config.language) ) ? config.language : 'en'
