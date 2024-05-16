@@ -200,7 +200,7 @@ class VBTutorialServeReceive extends VBTutorial {
           'Hier können Sie die Rotationen auswählen.\nKlicken Sie auf den Kreis, um die Rotation zu ändern.\nJede ist mit der Position des\nSetters beschriftet',
           'Diese sind für die Zeit, in der du dienst',
           'Diese sind für den Fall, dass du empfängst',
-          'Wenn man sich von Kreis zu Kreis bewegt, dreht man sich wie in einem Streichholz',
+          'Wenn man sich von Kreis zu Kreis bewegt, rotiert man wie in einem Volleyballmatch',
           'Hier können Sie die Phase des Ballwechsels auswählen.  Die Spieler bewegen sich dann auf dem Platz',
           'Diese zeigen die Positionen der Spieler\n, wenn Ihre Seite aufschlägt',
           'Diese zeigen die Spielerpositionen\n an, wenn Ihre Mannschaft annimmt',
