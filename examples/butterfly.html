@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Butterfly</title>
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <script src="../src/js/snap.svg-min.js"></script>
+    <script src="../src/js/vbCourts.js"></script>
+    <script type="text/javascript">
+      let vbCourtDiv
+      let running = false
+      let movingPromise = Promise.resolve()
+      let stepCount = 0
+      const LEFT = 250
+      const RIGHT = 650
+      const UP = 300
+      const MID = 450
+      const DOWN = 600
+      const BALL = 50
+      const PERSON = 100
+      const parts = {}
+      const steps = [
+        async () => {
+          // hit 1
+          parts.ball.setPosition(RIGHT - BALL, DOWN - BALL)
+          await parts.vbCourt.draw(500)
+        },
+        async () => {
+          // defense, setter move, hitter move down, extra move to first spot left
+          parts.ball.setPosition(MID, MID)
+          parts.player3.setPosition(MID, MID)
+          parts.player1.setPosition(LEFT, DOWN)
+          parts.player5.setPosition(LEFT, UP)
+          await parts.vbCourt.draw(800)
+        },
+        async () => {
+          // set
+          parts.ball.setPosition(RIGHT - BALL, UP + BALL)
+          await parts.vbCourt.draw(800)
+        },
+        async () => {
+          // hit 2, setter move behind
+          parts.ball.setPosition(LEFT + BALL, DOWN - BALL)
+          parts.player3.setPosition(RIGHT, UP - PERSON)
+          await parts.vbCourt.draw(500)
+        },
+        async () => {
+          // defense, setter move, hitter move down, extra move to first spot right
+          parts.ball.setPosition(MID, MID)
+          parts.player2.setPosition(MID, MID)
+          parts.player4.setPosition(RIGHT, DOWN)
+          parts.player3.setPosition(RIGHT, UP)
+          await parts.vbCourt.draw(800)
+        },
+        async () => {
+          // set
+          parts.ball.setPosition(LEFT + BALL, UP + BALL)
+          await parts.vbCourt.draw(800)
+        },
+        async () => {
+          // hit1 again
+          parts.ball.setPosition(RIGHT - BALL, DOWN - BALL)
+          parts.player2.setPosition(RIGHT, UP - PERSON)
+          await parts.vbCourt.draw(500)
+        },
+        async () => {
+          // reset
+          parts.player1.setPosition(LEFT, UP)
+          parts.player2.setPosition(RIGHT, DOWN)
+          parts.player3.setPosition(LEFT, DOWN)
+          parts.player4.setPosition(RIGHT, UP)
+          parts.player5.setPosition(LEFT, UP - PERSON)   
+          await parts.vbCourt.draw(0)
+        }
+      ]
+
+      function clean(elem) {
+        while (elem.firstChild) {
+            elem.removeChild(elem.firstChild)
+        }
+      }
+
+      async function animateDrill () {
+        if (running) {
+          running = false
+          movingPromise.then(() => {
+            document.getElementById('drillButton').innerHTML = 'Play'
+          })
+        } else {
+          document.getElementById('drillButton').innerHTML = 'Pause'
+          running = true
+
+          while (running) {
+            let r
+            movingPromise = new Promise((resolve, reject) => {r = resolve})
+            await nextStep()
+            r()
+            if (!running) break
+          }
+        }
+      }
+
+      async function nextStep () {
+        if (stepCount >= steps.length) {
+          stepCount = 1   //Resets to 1 to create illusion
+        }
+        return steps[stepCount++]()
+      }
+
+      async function reset () {
+        running = false
+        movingPromise.then(() => {
+          parts.ball.setPosition(LEFT + BALL, UP + BALL)
+          parts.player1.setPosition(LEFT, UP)
+          parts.player2.setPosition(RIGHT, DOWN)
+          parts.player3.setPosition(LEFT, DOWN)
+          parts.player4.setPosition(RIGHT, UP)
+          parts.player5.setPosition(LEFT, UP - PERSON)     
+          document.getElementById('drillButton').innerHTML = 'Play'
+          stepCount = 0
+          return parts.vbCourt.draw(0)
+        })
+      }
+
+      window.onload = () => {
+        vbCourtDiv = document.getElementById('vbCourtDiv')
+        clean(vbCourtDiv)
+        parts.vbCourt = new VBHalfCourt({
+          width: 550
+        })
+        vbCourtDiv.appendChild(parts.vbCourt.getSVG())
+        parts.ball = parts.vbCourt.addBall(LEFT + BALL, UP + BALL)
+        parts.player1 = parts.vbCourt.addPlayer(LEFT, UP, '')
+        parts.player2 = parts.vbCourt.addPlayer(RIGHT, DOWN, '')
+        parts.player3 = parts.vbCourt.addPlayer(LEFT, DOWN, '')
+        parts.player4 = parts.vbCourt.addPlayer(RIGHT, UP, '')
+        parts.player5 = parts.vbCourt.addPlayer(LEFT, UP - PERSON, '')      
+        parts.vbCourt.draw()
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Schmetterling</h1>
+    </header>
+    <section class="vbrotations">
+      <div class="container">
+        <div id="vbCourtDiv" style="width: 550px; display: inline-block"></div>
+        <div style="margin-top: 40px; max-width: 340px; display: inline-block; vertical-align: top">
+          <p>Drill: Front-court chain drill</p>
+          <ul>
+            <li>Ball starts with a diagonal hit from the front from the player with 1 extra</li>
+            <li>Defense goes to middle, Hitter moves straight down</li>
+            <li>Other back player sets the player diagonally and joins the other front player as extra</li>
+            <li>Repeat mirrored ad infinitum</li>
+          </ul>
+          <p><span id="drillButton" onclick="animateDrill()" style="cursor: pointer; padding: 3px 7px 3px 7px; background: #7ec485;">Play</span> - <span id="drillButton" onclick="reset()" style="cursor: pointer; padding: 3px 7px 3px 7px; background: #7ec485;">Reset</span></p>
+        </div>
+      </div>
+    </section>
+    <section class="notes">
+      <div class="container">
+      </div>
+    </section>
+    <footer class="footer">
+      <p>Created using <a href="https://github.com/monkeysppp/VBRotations" target="_blank">VBRotations</a><br /></a></p>
+    </footer>
+  </body>
+</html>
