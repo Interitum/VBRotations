@@ -1785,8 +1785,8 @@ class VBTutorialServeReceiveDefensive51 extends VBTutorialServeReceive{
         },
         3: {
           h2: { x: 700, y: 600 },
-          m1: { x: 600, y: 160 },
-          s:  { x: 600, y: 60 },
+          m1: { x: 500, y: 160 },
+          s:  { x: 450, y: 60 },
           h1: { x: 60, y: 200 },
           l:  { x: 200, y: 600 },
           o:  { x: 450, y: 700 },

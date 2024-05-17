@@ -18,9 +18,9 @@
 
       function createVBTutorial (lang) {
         if (lang === 'en') {
-          window.history.replaceState(null, '', '5-1-rotation-system.html')
+          window.history.replaceState(null, '', '5-1-rotation-system-defensiveOpp.html')
         } else {
-          window.history.replaceState(null, '', '5-1-rotation-system.html?lang=' + lang)
+          window.history.replaceState(null, '', '5-1-rotation-system-defensiveOpp.html?lang=' + lang)
         }
         clean(vbTutorialDiv)
         const vbTutorial = new VBTutorialServeReceiveDefensive51({
@@ -54,14 +54,14 @@
           de: '5-1 Rotation im Volleyball mit defensivem Diagonal'
         }
         desc = {
-          en: 'Defensive Opposite 5-1. Libero 6 Reveives, Opposite 4 Receives, Hitter1(near) 3 Receives, Hitter2(far) 5 Receives',
-          fr: 'The interactive diagram above can be used to demonstrate a typical 5-1 volleyball rotation system.  You can run the tutorial to show how the diagram works.',
-          it: 'Il diagramma interattivo (sopra) indica il tipico sistema di rotazione 5-1 usato nella pallavolo. Puoi riprodurre il tutorial per vedere come funziona il diagramma.',
-          nl: 'Het interactieve diagram hierboven kan gebruikt worden om een standaard 5-1 volleybal rotatie systeem te demonstreren. Door loop de instructies om te zien hoe het diagram werkt.',
-          pl: 'Powyższy interaktywny diagram może posłużyć do zademonstrowania typowego systemu rotacji siatkówki 5-1. Możesz uruchomić samouczek, aby zobaczyć, jak działa diagram.',
-          es: 'Este diagrama interactivo demuestra el sistema de juego 5:1 en voleibol. Utilice el tutorial para saber cómo usar el diagrama.',
-          pt_br: 'O diagrama interativo a cima pode ser usado para demonstrar um sistama 5x1 de rotação no Voleibol. Você pode abrir o tutorial para aprender como o diagrama funciona.',
-          de: 'Defensiver Diagonal 5-1. Libero 6 Annahmen, Diagonal 4 Annahmen, Außen1(nah) 3 Annahmen, Außen2(fern) 5 Annahmen'
+          en: 'Defensive Opposite 5-1. \nLibero 6 Reveives, Opposite 4 Receives, Hitter1(near) 3 Receives, Hitter2(far) 5 Receives',
+          fr: 'Defensive Opposite 5-1. \nLibero 6 Reveives, Opposite 4 Receives, Hitter1(near) 3 Receives, Hitter2(far) 5 Receives',
+          it: 'Defensive Opposite 5-1. \nLibero 6 Reveives, Opposite 4 Receives, Hitter1(near) 3 Receives, Hitter2(far) 5 Receives',
+          nl: 'Defensive Opposite 5-1. \nLibero 6 Reveives, Opposite 4 Receives, Hitter1(near) 3 Receives, Hitter2(far) 5 Receives',
+          pl: 'Defensive Opposite 5-1. \nLibero 6 Reveives, Opposite 4 Receives, Hitter1(near) 3 Receives, Hitter2(far) 5 Receives',
+          es: 'Defensive Opposite 5-1. \nLibero 6 Reveives, Opposite 4 Receives, Hitter1(near) 3 Receives, Hitter2(far) 5 Receives',
+          pt_br: 'Defensive Opposite 5-1. \nLibero 6 Reveives, Opposite 4 Receives, Hitter1(near) 3 Receives, Hitter2(far) 5 Receives',
+          de: 'Defensiver Diagonal 5-1. \nLibero 6 Annahmen, Diagonal 4 Annahmen, Außen1(nah) 3 Annahmen, Außen2(fern) 5 Annahmen'
         }
         document.getElementById('descriptionP').innerHTML = desc[lang]
         document.getElementById('titleH').innerHTML = title[lang]
