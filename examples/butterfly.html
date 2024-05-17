@@ -17,12 +17,14 @@
       const DOWN = 600
       const BALL = 50
       const PERSON = 100
+      const FAST = 800
+      const SLOW = 1200
       const parts = {}
       const steps = [
         async () => {
           // hit 1
           parts.ball.setPosition(RIGHT - BALL, DOWN - BALL)
-          await parts.vbCourt.draw(500)
+          await parts.vbCourt.draw(FAST)
         },
         async () => {
           // defense, setter move, hitter move down, extra move to first spot left
@@ -30,18 +32,18 @@
           parts.player3.setPosition(MID, MID)
           parts.player1.setPosition(LEFT, DOWN)
           parts.player5.setPosition(LEFT, UP)
-          await parts.vbCourt.draw(800)
+          await parts.vbCourt.draw(SLOW)
         },
         async () => {
           // set
           parts.ball.setPosition(RIGHT - BALL, UP + BALL)
-          await parts.vbCourt.draw(800)
+          await parts.vbCourt.draw(SLOW)
         },
         async () => {
           // hit 2, setter move behind
           parts.ball.setPosition(LEFT + BALL, DOWN - BALL)
           parts.player3.setPosition(RIGHT, UP - PERSON)
-          await parts.vbCourt.draw(500)
+          await parts.vbCourt.draw(FAST)
         },
         async () => {
           // defense, setter move, hitter move down, extra move to first spot right
@@ -49,18 +51,18 @@
           parts.player2.setPosition(MID, MID)
           parts.player4.setPosition(RIGHT, DOWN)
           parts.player3.setPosition(RIGHT, UP)
-          await parts.vbCourt.draw(800)
+          await parts.vbCourt.draw(SLOW)
         },
         async () => {
           // set
           parts.ball.setPosition(LEFT + BALL, UP + BALL)
-          await parts.vbCourt.draw(800)
+          await parts.vbCourt.draw(SLOW)
         },
         async () => {
           // hit1 again
           parts.ball.setPosition(RIGHT - BALL, DOWN - BALL)
-          parts.player2.setPosition(RIGHT, UP - PERSON)
-          await parts.vbCourt.draw(500)
+          parts.player2.setPosition(LEFT, UP - PERSON)
+          await parts.vbCourt.draw(FAST)
         },
         async () => {
           // reset
@@ -146,7 +148,7 @@
       <div class="container">
         <div id="vbCourtDiv" style="width: 550px; display: inline-block"></div>
         <div style="margin-top: 40px; max-width: 340px; display: inline-block; vertical-align: top">
-          <p>Drill: Front-court chain drill</p>
+          <p>Continuos loop of peppering in a group</p>
           <ul>
             <li>Ball starts with a diagonal hit from the front from the player with 1 extra</li>
             <li>Defense goes to middle, Hitter moves straight down</li>
