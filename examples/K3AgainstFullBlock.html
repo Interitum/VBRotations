@@ -95,9 +95,11 @@
       async function nextStep () {
         console.log (`stepping at ${stepCount}`)
         if (stepCount >= steps.length) {
-          stepCount = 0
+          reset()
+        }else{
+          return steps[stepCount++]()
         }
-        return steps[stepCount++]()
+        
       }
 
       async function reset () {
