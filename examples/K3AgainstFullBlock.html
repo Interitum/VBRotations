@@ -12,9 +12,13 @@
       let stepCount = 0
       const LEFT = 150
       const RIGHT = 750
+      const MID = 450
+      const HALFLEFT = 300
+      const HALFRIGHT = 600
+
       const NET = 60
       const RUN = 300
-      const MID = 450
+      
       const DOWN = 600
       const BALL = 50
       const PERSON = 100
@@ -27,7 +31,7 @@
           // Ball to X team 1, ready attack
           parts.ball.setPosition(LEFT, DOWN - BALL)
 
-          parts.S1.setPosition((RIGHT - MID) / 2, NET)
+          parts.S1.setPosition(HALFRIGHT, NET)
           parts.M1.setPosition(MID-BALL, RUN)
           parts.O1.setPosition(RIGHT+BALL, RUN)
           parts.H1.setPosition(LEFT-BALL, RUN)
@@ -35,24 +39,24 @@
         },
         async () => {
           // Ball to S1
-          parts.ball.setPosition((RIGHT - MID) / 2 - BALL, NET)
+          parts.ball.setPosition(HALFRIGHT - BALL, NET)
           await parts.vbCourt.draw(SLOW)
         },
         async () => {
           // set and attack, block other side
           parts.ball.setPosition(LEFT, 0 + BALL)
 
-          parts.S1.setPosition((RIGHT - MID) / 2, RUN)
+          parts.S1.setPosition(HALFRIGHT, RUN)
           parts.M1.setPosition(MID, NET)
           parts.O1.setPosition(RIGHT, NET)
           parts.H1.setPosition(LEFT, NET)
-          parts.X1.setPosition((MID-LEFT) / 2 + LEFT, NET + PERSON)
+          parts.X1.setPosition(HALFLEFT, NET + PERSON)
 
           parts.S2.setPosition(0 + PERSON, -RUN)
           parts.M2.setPosition(LEFT + PERSON, -NET)
           parts.O2.setPosition(LEFT, -NET)
           parts.H2.setPosition(RIGHT, -RUN) 
-          parts.X2.setPosition((RIGHT-MID) / 2 + MID, -DOWN)
+          parts.X2.setPosition(HALFRIGHT, -DOWN)
           await parts.vbCourt.draw(FAST)
         },
         async () => {
@@ -103,13 +107,13 @@
           parts.trainer.setPosition(0 - PERSON, 0)
 
           parts.X1.setPosition(LEFT, DOWN)
-          parts.S1.setPosition((RIGHT - MID) / 2, RUN)
+          parts.S1.setPosition(HALFRIGHT, RUN)
           parts.M1.setPosition(MID, NET)
           parts.O1.setPosition(RIGHT, NET)
           parts.H1.setPosition(LEFT, NET)
 
           parts.X2.setPosition(RIGHT, -DOWN)
-          parts.S2.setPosition((RIGHT - MID) / 2, -RUN)
+          parts.S2.setPosition(HALFLEFT, -RUN)
           parts.M2.setPosition(MID, -NET)
           parts.O2.setPosition(LEFT, -NET)
           parts.H2.setPosition(RIGHT, -NET) 
@@ -131,17 +135,17 @@
 
         parts.X1 = parts.vbCourt.addPlayer(LEFT, DOWN, 'X/L')
         parts.X1.colours.playerColour = '#f5c5ae'
-        parts.S1 = parts.vbCourt.addPlayer((RIGHT - MID) / 2 + MID, RUN, 'S')
+        parts.S1 = parts.vbCourt.addPlayer(HALFRIGHT, RUN, 'S')
         parts.M1 = parts.vbCourt.addPlayer(MID, NET, 'M')
         parts.O1 = parts.vbCourt.addPlayer(RIGHT, NET, 'O')
         parts.H1 = parts.vbCourt.addPlayer(LEFT, NET, 'H')
 
         parts.X2 = parts.vbCourt.addPlayer(RIGHT, -DOWN, 'X/L')
         parts.X2.colours.playerColour = '#f5c5ae'
-        parts.S2 = parts.vbCourt.addPlayer((MID - LEFT) / 2 + LEFT, -RUN,'S')
+        parts.S2 = parts.vbCourt.addPlayer(HALFLEFT, -RUN,'S')
         parts.M2 = parts.vbCourt.addPlayer(MID, -NET, 'M')
-        parts.O2 = parts.vbCourt.addPlayer(RIGHT, -NET, 'O')
-        parts.H2 = parts.vbCourt.addPlayer(LEFT, -NET, 'H')     
+        parts.O2 = parts.vbCourt.addPlayer(LEFT, -NET, 'O')
+        parts.H2 = parts.vbCourt.addPlayer(RIGHT, -NET, 'H')     
         parts.vbCourt.draw()
       }
     </script>
