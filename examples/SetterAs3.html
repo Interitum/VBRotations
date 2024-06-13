@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Full Court Drill</title>
+    <title>Setter as 3</title>
     <link href="../style.css" rel="stylesheet" type="text/css">
     <script src="../src/js/snap.svg-min.js"></script>
     <script src="../src/js/vbCourts.js"></script>
@@ -24,7 +24,7 @@
       const steps = [
         async () => {
           // Ball to Setter
-          parts.ball.setPosition(MID+PERSON-BALL, UP)
+          parts.ball.setPosition(MID+2*PERSON-BALL, UP)
           await parts.vbCourt.draw(SLOW)
         },
         async () => {
@@ -40,7 +40,7 @@
         },
         async () => {
           // Ball to Setter, Front runs
-          parts.ball.setPosition(MID+PERSON-BALL, UP)
+          parts.ball.setPosition(MID+2*PERSON-BALL, UP)
           parts.playerF.setPosition(MID, UP)
           await parts.vbCourt.draw(SLOW)
         },
@@ -57,7 +57,7 @@
         },
         async () => {
           // Ball to Setter, Front runs
-          parts.ball.setPosition(MID+PERSON-BALL, UP)
+          parts.ball.setPosition(MID+2*PERSON-BALL, UP)
           parts.playerF.setPosition(RIGHT, UP)
           await parts.vbCourt.draw(SLOW)
         },
@@ -114,7 +114,7 @@
         movingPromise.then(() => {
           parts.playerF.setPosition(LEFT, UP)
           parts.playerB.setPosition(MID, DOWN)
-          parts.playerS.setPosition(MID-PERSON, UP)
+          parts.playerS.setPosition(MID+2*PERSON, UP)
           parts.ball.setPosition(MID, DOWN-BALL)
           document.getElementById('drillButton').innerHTML = 'Play'
           stepCount = 0
@@ -125,14 +125,14 @@
       window.onload = () => {
         vbCourtDiv = document.getElementById('vbCourtDiv')
         clean(vbCourtDiv)
-        parts.vbCourt = new VBFullCourt({
-          width: 400
+        parts.vbCourt = new VBHalfCourt({
+          width: 550
         })
         vbCourtDiv.appendChild(parts.vbCourt.getSVG())
         parts.ball = parts.vbCourt.addBall(MID, DOWN-BALL)
         parts.playerF = parts.vbCourt.addPlayer(LEFT, UP, 'F')
         parts.playerB = parts.vbCourt.addPlayer(MID, DOWN, 'B')
-        parts.playerS = parts.vbCourt.addPlayer(MID+PERSON, UP, 'S')
+        parts.playerS = parts.vbCourt.addPlayer(MID+2*PERSON, UP, 'S')
         parts.vbCourt.draw()
       }
     </script>
