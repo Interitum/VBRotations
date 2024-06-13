@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Full Court Drill</title>
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <script src="../src/js/snap.svg-min.js"></script>
+    <script src="../src/js/vbCourts.js"></script>
+    <script type="text/javascript">
+      let vbCourtDiv
+      let running = false
+      let movingPromise = Promise.resolve()
+      let stepCount = 0
+      const LEFT = 150
+      const RIGHT = 750
+      const UP = 100
+      const MID = 450
+      const DOWN = 350
+      const BALL = 50
+      const PERSON = 100
+      const FAST = 800
+      const SLOW = 1200
+
+      const parts = {}
+      const steps = [
+        async () => {
+          // Ball to Setter
+          parts.ball.setPosition(MID+PERSON-BALL, UP)
+          await parts.vbCourt.draw(SLOW)
+        },
+        async () => {
+          // Set, B Runs
+          parts.ball.setPosition(LEFT+BALL, UP)
+          parts.playerB.setPosition(LEFT, DOWN)
+          await parts.vbCourt.draw(SLOW)
+        },
+        async () => {
+          // Ball to back
+          parts.ball.setPosition(LEFT, DOWN - BALL)
+          await parts.vbCourt.draw(SLOW)
+        },
+        async () => {
+          // Ball to Setter, Front runs
+          parts.ball.setPosition(MID+PERSON-BALL, UP)
+          parts.playerF.setPosition(MID, UP)
+          await parts.vbCourt.draw(SLOW)
+        },
+        async () => {
+          // Set, B Runs
+          parts.ball.setPosition(MID+BALL, UP)
+          parts.playerB.setPosition(RIGHT, DOWN)
+          await parts.vbCourt.draw(SLOW)
+        },
+        async () => {
+          // Ball to back
+          parts.ball.setPosition(RIGHT, DOWN - BALL)
+          await parts.vbCourt.draw(SLOW)
+        },
+        async () => {
+          // Ball to Setter, Front runs
+          parts.ball.setPosition(MID+PERSON-BALL, UP)
+          parts.playerF.setPosition(RIGHT, UP)
+          await parts.vbCourt.draw(SLOW)
+        },
+        async () => {
+          // Set, B Runs
+          parts.ball.setPosition(RIGHT-BALL, UP)
+          parts.playerB.setPosition(MID, DOWN)
+          await parts.vbCourt.draw(SLOW)
+        },
+        async () => {
+          // Ball to back, F to start
+          parts.ball.setPosition(MID, DOWN - BALL)
+          parts.playerF.setPosition(LEFT, UP)
+          await parts.vbCourt.draw(SLOW)
+        },
+      ]
+
+      function clean (elem) {
+        while (elem.firstChild) {
+            elem.removeChild(elem.firstChild)
+        }
+      }
+
+      async function animateDrill () {
+        if (running) {
+          running = false
+          movingPromise.then(() => {
+            document.getElementById('drillButton').innerHTML = 'Play'
+          })
+        } else {
+          document.getElementById('drillButton').innerHTML = 'Pause'
+          running = true
+
+          while (running) {
+            let r
+            movingPromise = new Promise((resolve, reject) => {r = resolve})
+            await nextStep()
+            r()
+            if (!running) break
+          }
+        }
+      }
+
+      async function nextStep () {
+        console.log (`stepping at ${stepCount}`)
+        if (stepCount >= steps.length) {
+          stepCount = 0
+        }
+        return steps[stepCount++]()
+      }
+
+      async function reset () {
+        running = false
+        movingPromise.then(() => {
+          parts.playerF.setPosition(LEFT, UP)
+          parts.playerB.setPosition(MID, DOWN)
+          parts.playerS.setPosition(MID-PERSON, UP)
+          parts.ball.setPosition(MID, DOWN-BALL)
+          document.getElementById('drillButton').innerHTML = 'Play'
+          stepCount = 0
+          return parts.vbCourt.draw(0)
+        })
+      }
+
+      window.onload = () => {
+        vbCourtDiv = document.getElementById('vbCourtDiv')
+        clean(vbCourtDiv)
+        parts.vbCourt = new VBFullCourt({
+          width: 400
+        })
+        vbCourtDiv.appendChild(parts.vbCourt.getSVG())
+        parts.ball = parts.vbCourt.addBall(MID, DOWN-BALL)
+        parts.playerF = parts.vbCourt.addPlayer(LEFT, UP, 'F')
+        parts.playerB = parts.vbCourt.addPlayer(MID, DOWN, 'B')
+        parts.playerS = parts.vbCourt.addPlayer(MID+PERSON, UP, 'S')
+        parts.vbCourt.draw()
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Full Court Drill</h1>
+    </header>
+    <section class="vbrotations">
+      <div class="container">
+        <div id="vbCourtDiv" style="width: 400px; display: inline-block"></div>
+        <div style="margin-left: 20px; margin-top: 40px; max-width: 470px; display: inline-block; vertical-align: top">
+          <p>Drill: 3 setter</p>
+          <ul>
+            <li>1 Setter on setting position, 1 Front, 1 Back (~3-4m)</li>
+            <li>Only overhand passes</li>
+            <li>Front and Back change position after every touch, between middle, left and right</li>
+            <li>Every overhand pass should reach the next player, irregardless of their position</li>
+            <li>All passes should be hittable</li>
+            <li>Added complexity can be added with setting height requirement</li>
+          </ul>
+          <p><span id="drillButton" onclick="animateDrill()" style="cursor: pointer; padding: 3px 7px 3px 7px; background: #7ec485;">Play</span> - <span id="drillButton" onclick="reset()" style="cursor: pointer; padding: 3px 7px 3px 7px; background: #7ec485;">Reset</span></p>
+        </div>
+      </div>
+    </section>
+    <section class="notes">
+      <div class="container">
+      </div>
+    </section>
+    <footer class="footer">
+      <p>Created using <a href="https://github.com/monkeysppp/VBRotations" target="_blank">VBRotations</a><br /></a></p>
+    </footer>
+  </body>
+</html>
